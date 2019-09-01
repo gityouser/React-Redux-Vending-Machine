@@ -14,7 +14,6 @@ function vendingMachineReducer(state = initialState, action) {
         count: state.count += amount
       };
     }
-
     default: return state;
   }
 }

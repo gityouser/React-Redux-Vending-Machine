@@ -1,7 +1,25 @@
-$bg: #333;
 @import '../components/components.scss';
 @import '../containers/containers.scss';
+@import './constants.scss';
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 
 body {
-  background: $bg;
+  background: $body-background;
+}
+
+#app {
+  margin: auto;
+  max-width: 600px;
 }

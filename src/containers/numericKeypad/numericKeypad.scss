@@ -1,0 +1,13 @@
+.numeric-keypad {
+  grid-area: 4/3/5/4;
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+  grid-template-areas:  "nine eight seven"
+                        "six  five  four"
+                        "three two one"
+                        "reset zero register";
+  grid-gap: 1px;
+  width: 90px;
+  height: 100px;
+  margin-left: 40px;
+}

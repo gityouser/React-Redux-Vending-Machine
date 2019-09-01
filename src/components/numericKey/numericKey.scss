@@ -1,0 +1,61 @@
+@import '../../styles/constants.scss';
+
+$key_square_side: 30px;
+
+.numeric-key {
+  margin:auto;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid $outline-border-color;
+  user-select: none;
+  height: $key_square_side;
+  width: $key_square_side;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &:hover {
+    background: lighten($body-background, 40%);
+  }
+
+  &:active {
+    background: #1DB954;
+  }
+
+  &.key-zero {
+    grid-area: zero;
+  }
+  &.key-one {
+    grid-area: one;
+  }
+  &.key-two {
+    grid-area: two;
+  }
+  &.key-three {
+    grid-area: three;
+  }
+  &.key-four {
+    grid-area: four;
+  }
+  &.key-five {
+    grid-area: five;
+  }
+  &.key-six {
+    grid-area: six;
+  }
+  &.key-seven {
+    grid-area: seven;
+  }
+  &.key-eight {
+    grid-area: eight;
+  }
+  &.key-nine {
+    grid-area: nine;
+  }
+  &.key-reset {
+    grid-area: reset;
+  }
+  &.key-register {
+    grid-area: register;
+  }
+}

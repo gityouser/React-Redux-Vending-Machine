@@ -1,5 +1,11 @@
-.test-wrapper {
-  h1, p {
-    color: #fff;
-  }
+@import '../../styles/constants.scss';
+
+.vending-machine {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 50px repeat(5, 1fr) 1fr 50px;
+  grid-template-columns: 20px 2fr 1fr 20px;
+  border: 20px solid $outline-border-color;
 }

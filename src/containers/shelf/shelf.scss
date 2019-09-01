@@ -1,0 +1,8 @@
+.shelf {
+  grid-area: 2/2/7/3;
+
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(3, 1fr);
+  grid-gap: 10px;
+  user-select: none;
+}

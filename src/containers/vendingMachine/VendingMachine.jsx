@@ -1,21 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import Shelf from '../shelf/Shelf.jsx';
+import NumericKeypad from '../numericKeypad/NumericKeypad.jsx';
+import UnitDisplay from '../../components/unitDisplay/UnitDisplay.jsx';
 import {setCounterAction} from './vendingMachine-reducer';
 
 
-
 function VendingMachine({count, setCounterAction}) {
-
-  return <div className='test-wrapper'>
-    <h1>Hello, I am test component!</h1>
-    <p>{`Count: ${count}`}</p>
-    <button
-      onClick={() => setCounterAction(1)}
-    >+</button>
-    <button
-      onClick={() => setCounterAction(-1)}
-    >-</button>
+  return <div className='vending-machine'>
+    <Shelf/>
+    <NumericKeypad/>
+    <UnitDisplay/>
   </div>
 }
 
