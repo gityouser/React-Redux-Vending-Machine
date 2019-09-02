@@ -4,6 +4,7 @@ import uuid from 'uuid/v4';
 
 import NumericKey from '../../components/numericKey/NumericKey.jsx';
 import {numericKeysConfig, specialKeysConfig} from './utils/constants.js';
+import {handleUserPurchaseIntent} from './utils/utils';
 import {
   registerNumericKeyPressAction,
   registerUserSelectionAction,
@@ -16,6 +17,7 @@ function NumericKeypad({
   registerNumericKeyPressAction,
   resetUserSelectionAction,
   registerUserSelectionAction,
+  updateDisplayMessageAction,
   productList,
 }) {
   const {numericKeyIds} = numericKeysConfig;
@@ -37,12 +39,18 @@ function NumericKeypad({
     })}
     <NumericKey // will dispatch different type of actions than numericKeys
       keyAction={() => resetUserSelectionAction()}
+
       keyClassName={specialKeysConfig[0].keyName}
       keyValue={specialKeysConfig[0].keyValue}
       key={uuid()}
     />
     <NumericKey // will dispatch different type of actions than numericKeys
-      keyAction={() => registerUserSelectionAction(productList)}
+      keyAction={() => handleUserPurchaseIntent({
+        productList,
+        userSelection,
+        registerUserSelectionAction,
+        updateDisplayMessageAction,
+      })}
       keyClassName={specialKeysConfig[1].keyName}
       keyValue={specialKeysConfig[1].keyValue}
       key={uuid()}

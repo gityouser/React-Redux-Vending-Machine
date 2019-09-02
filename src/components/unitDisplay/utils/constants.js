@@ -1,4 +1,5 @@
 export const unitDisplayMessages = {
   defaultMessage: 'Please enter selection',
-  userSelectionPrefix: 'You selected:'
+  userSelectionPrefix: 'You selected: ',
+  userOrderedPrefix: 'You purchased: ',
 }

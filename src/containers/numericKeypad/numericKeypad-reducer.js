@@ -2,6 +2,8 @@ import {numericKeypadActionTypes} from '../../actions/action-types';
 
 const initialState = {
   userSelection: '',
+  orderedItem: null,
+  paidAmount: 10,
 }
 
 function numericKeypadReducer(state = initialState, action) {
@@ -25,8 +27,15 @@ function numericKeypadReducer(state = initialState, action) {
 
     case numericKeypadActionTypes.registerUserSelectionAction: {
       const productList = action.payload;
-      console.log('productList: ', productList)
-      return {...state}
+      const {userSelection} = state;
+      const lockedOrderedItem = productList.hasOwnProperty(userSelection)
+        ? {...productList[userSelection]}
+        : null
+
+      return {
+        ...state,
+        orderedItem: lockedOrderedItem,
+      }
     }
 
     default: return state
