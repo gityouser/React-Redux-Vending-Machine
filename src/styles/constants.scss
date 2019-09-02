@@ -1,4 +1,8 @@
-$body-background: rgb(82, 82, 82);
+$grey-solid-color: #828282;
+$sand-solid-color: #ecebe8;
+$white-solid-color: #FFFFFF;
+$black-solid-color: #000000;
+$lighter-grey-color: lighten($grey-solid-color, 10%);
 $outline-border-color: rgb(23, 25, 25);
 $selection-available-color: #1DB954;
 $selection-unavailable-color: indianred;

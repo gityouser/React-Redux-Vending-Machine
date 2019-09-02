@@ -6,7 +6,7 @@ const initialState = {
 
 function numericKeypadReducer(state = initialState, action) {
   switch(action.type) {
-    case numericKeypadActionTypes.registerUserSelectionAction: {
+    case numericKeypadActionTypes.registerNumericKeyPressAction: {
       const {userSelection} = action.payload;
       const newUserSelection = state.userSelection + userSelection;
 
@@ -23,13 +23,19 @@ function numericKeypadReducer(state = initialState, action) {
       }
     }
 
+    case numericKeypadActionTypes.registerUserSelectionAction: {
+      const productList = action.payload;
+      console.log('productList: ', productList)
+      return {...state}
+    }
+
     default: return state
   };
 }
 
-export function registerUserSelectionAction(userSelection) {
+export function registerNumericKeyPressAction(userSelection) {
   return {
-    type: numericKeypadActionTypes.registerUserSelectionAction,
+    type: numericKeypadActionTypes.registerNumericKeyPressAction,
     payload: {userSelection}
   }
 }
@@ -37,6 +43,13 @@ export function registerUserSelectionAction(userSelection) {
 export function resetUserSelectionAction() {
   return {
     type: numericKeypadActionTypes.resetUserSelectionAction,
+  }
+}
+
+export function registerUserSelectionAction(productList) {
+  return {
+    type: numericKeypadActionTypes.registerUserSelectionAction,
+    payload: productList
   }
 }
 

@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background: $lighter-grey-color;
 
   .shelf-slot__type {
     text-align: center;
@@ -22,16 +23,16 @@
     padding: 20px;
     width: 30px;
     height: 30px;
-    border: 2px solid $outline-border-color;
+    border: 4px solid $outline-border-color;
     border-radius: 50%;
 
     &.selection-unavailable {
-      border-color: red;
+      border-color: $selection-unavailable-color;
     }
-
+    
     &.selection-available {
       border-color: $selection-available-color;
+      box-shadow: 0 12px 30px $black-solid-color,
     }
   }
-
 }

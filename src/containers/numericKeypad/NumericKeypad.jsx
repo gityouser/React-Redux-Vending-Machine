@@ -5,14 +5,18 @@ import uuid from 'uuid/v4';
 import NumericKey from '../../components/numericKey/NumericKey.jsx';
 import {numericKeysConfig, specialKeysConfig} from './utils/constants.js';
 import {
+  registerNumericKeyPressAction,
   registerUserSelectionAction,
   resetUserSelectionAction,
 } from './numericKeypad-reducer';
+import {updateDisplayMessageAction} from '../../components/unitDisplay/unitDisplay-reducer';
 
 function NumericKeypad({
   userSelection,
-  registerUserSelectionAction,
+  registerNumericKeyPressAction,
   resetUserSelectionAction,
+  registerUserSelectionAction,
+  productList,
 }) {
   const {numericKeyIds} = numericKeysConfig;
   console.log('userSelection: ', userSelection)
@@ -24,7 +28,7 @@ function NumericKeypad({
 
       return (
         <NumericKey
-          keyAction={() => registerUserSelectionAction(keyValue)}
+          keyAction={() => registerNumericKeyPressAction(keyValue)}
           keyClassName={keyName}
           keyValue={keyValue}
           key={uuid()}
@@ -38,7 +42,7 @@ function NumericKeypad({
       key={uuid()}
     />
     <NumericKey // will dispatch different type of actions than numericKeys
-      keyAction={() => resetUserSelectionAction()}
+      keyAction={() => registerUserSelectionAction(productList)}
       keyClassName={specialKeysConfig[1].keyName}
       keyValue={specialKeysConfig[1].keyValue}
       key={uuid()}
@@ -46,14 +50,22 @@ function NumericKeypad({
   </div>
 }
 
-function mapStateToProps({numericKeypadReducer}) {
-  return {userSelection: numericKeypadReducer.userSelection}
+function mapStateToProps({
+  numericKeypadReducer,
+  shelfReducer,
+}) {
+  return {
+    userSelection: numericKeypadReducer.userSelection,
+    productList: shelfReducer.productList,
+  }
 }
 
 export default connect(
   mapStateToProps,
   {
-    registerUserSelectionAction,
+    registerNumericKeyPressAction,
     resetUserSelectionAction,
+    updateDisplayMessageAction,
+    registerUserSelectionAction,
   }
 )(NumericKeypad);

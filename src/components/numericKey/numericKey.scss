@@ -13,9 +13,11 @@ $key_square_side: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: $lighter-grey-color;
   
   &:hover {
-    background: lighten($body-background, 40%);
+    background: darken($grey-solid-color, 40%);
+    color: $white-solid-color;
   }
 
   &:active {

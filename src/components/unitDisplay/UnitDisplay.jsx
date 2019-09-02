@@ -1,14 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-function UnitDisplay({unitDisplayMessage}) {
+import {unitDisplayMessages} from './utils/constants';
+
+function UnitDisplay({
+  unitDisplayMessage,
+  userSelection
+}) {
+  const {userSelectionPrefix} = unitDisplayMessages;
+
   return <div className="unit-display">
-    <p>{unitDisplayMessage}</p>
+    <p>
+      {userSelection
+        ? `${userSelectionPrefix} ${userSelection}`
+        : unitDisplayMessage}
+    </p>
   </div>
 }
 
-function mapStateToProps({unitDisplayReducer}) {
-  return {unitDisplayMessage: unitDisplayReducer.unitDisplayMessage}
+function mapStateToProps({
+  unitDisplayReducer,
+  numericKeypadReducer,
+}) {
+  return {
+    unitDisplayMessage: unitDisplayReducer.unitDisplayMessage,
+    userSelection: numericKeypadReducer.userSelection,
+  }
 }
 
 export default connect(

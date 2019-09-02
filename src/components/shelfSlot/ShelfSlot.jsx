@@ -5,18 +5,16 @@ function ShelfSlot({
   type,
   productId,
   quantity,
-  numericKeypadReducer,
   userSelection,
 }) {
   const productSelected = userSelection == productId;
-  console.log('userSelection, productId, productSelected: ', userSelection, productId, productSelected)
+  const conditionalClasses = `${quantity ? '' : 'selection-unavailable'} 
+  ${quantity && productSelected ? 'selection-available' : ''}`
+
   return <div className="shelf-slot">
     <div className="shelf-slot__type">{type}</div>
     <div 
-      className={`shelf-slot__id
-        ${quantity ? '' : 'selection-unavailable'} 
-        ${quantity && productSelected ? 'selection-available' : ''}
-      `}
+      className={`shelf-slot__id ${conditionalClasses}`}
     >
       <p>{productId}</p>
     </div>

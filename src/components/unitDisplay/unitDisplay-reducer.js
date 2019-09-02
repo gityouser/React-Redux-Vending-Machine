@@ -5,10 +5,11 @@ const initialState = {
 }
 
 function unitDisplayReducer(state = initialState, action) {
+  console.log('here')
   switch(action.type) {
     case unitDisplayActionTypes.updateDisplayMessageAction: {
       const message = action.payload;
-
+      console.log('message: ', message)
       return {
         ...state,
         unitDisplayMessage: message,
@@ -22,7 +23,7 @@ function unitDisplayReducer(state = initialState, action) {
 export function updateDisplayMessageAction(message) {
   return {
     type: unitDisplayActionTypes.updateDisplayMessageAction,
-    payload: {message}
+    payload: message
   }
 }
 
