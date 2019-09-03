@@ -3,7 +3,8 @@ import {numericKeypadActionTypes} from '../../actions/action-types';
 const initialState = {
   userSelection: '',
   orderedItem: null,
-  paidAmount: 10,
+  paidAmount: 0,
+  orderIntent: false,
 }
 
 function numericKeypadReducer(state = initialState, action) {
@@ -15,6 +16,7 @@ function numericKeypadReducer(state = initialState, action) {
       return {
         ...state,
         userSelection: newUserSelection,
+        orderIntent: false,
       }
     }
 
@@ -22,6 +24,9 @@ function numericKeypadReducer(state = initialState, action) {
       return {
         ...state,
         userSelection: '',
+        orderedItem: null,
+        paidAmount: 0,
+        orderIntent: false,
       }
     }
 
@@ -35,6 +40,16 @@ function numericKeypadReducer(state = initialState, action) {
       return {
         ...state,
         orderedItem: lockedOrderedItem,
+        orderIntent: true,
+      }
+    }
+
+    case numericKeypadActionTypes.payForPurchaseAction: {
+      const amount = action.payload;
+
+      return {
+        ...state,
+        paidAmount: amount,
       }
     }
 
@@ -59,6 +74,13 @@ export function registerUserSelectionAction(productList) {
   return {
     type: numericKeypadActionTypes.registerUserSelectionAction,
     payload: productList
+  }
+}
+
+export function payForPurchaseAction(amount) {
+  return {
+    type: numericKeypadActionTypes.payForPurchaseAction,
+    payload: amount,
   }
 }
 

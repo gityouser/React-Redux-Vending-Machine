@@ -1,0 +1,31 @@
+.pay-button {
+  grid-area: 5/3/6/4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 20px;
+  width: 70px;
+  height: 30px;
+  border: 4px solid $outline-border-color;
+  border-radius: 20%;
+  margin: auto auto 0 auto;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+
+  &.amount-paid {
+    color: $selection-available-color;
+    background: $black-solid-color;
+    border-color: $selection-available-color;
+  }
+
+  &:hover {
+    background: darken($grey-solid-color, 40%);
+    color: $white-solid-color;
+  }
+
+  &:active {
+    background: $selection-available-color;
+  }
+}

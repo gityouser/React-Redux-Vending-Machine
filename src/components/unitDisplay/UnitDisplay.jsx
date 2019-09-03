@@ -1,53 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {unitDisplayMessages} from './utils/constants';
 import {updateDisplayMessageAction} from './unitDisplay-reducer';
 
 function UnitDisplay({
   unitDisplayMessage,
   userSelection,
-  updateDisplayMessageAction,
   orderedItem,
   paidAmount,
+  orderIntent,
 }) {
-  
-  function handleUnitDisplayMessages({
-    userSelection,
-    orderedItem,
-    paidAmount,
-    updateDisplayMessageAction,
-  }) {
-    const {
-      userSelectionPrefix,
-      userOrderedPrefix,
-      defaultMessage,
-    } = unitDisplayMessages;
-    let outputMessage;
-
-    if (userSelection && !orderedItem) {
-      // user pressed a hey, but hasn't yet ordered
-      outputMessage = userSelectionPrefix + userSelection;
-    } else if (orderedItem && paidAmount >= orderedItem.price) {
-      // user ordered and paid >= the price
-      outputMessage = userOrderedPrefix + orderedItem.type;
-    } else if (!userSelection) {
-      outputMessage = defaultMessage
-    }
-
-    updateDisplayMessageAction(outputMessage);
-  }
-
-  handleUnitDisplayMessages({
-    userSelection,
-    orderedItem,
-    paidAmount,
-    updateDisplayMessageAction,
-  })
-
   return <div className="unit-display">
     <p>
-      {unitDisplayMessage}
+      {
+        orderedItem
+        || (paidAmount && !userSelection)
+        || (!paidAmount && !orderedItem && !userSelection)
+        || (!orderedItem && orderIntent)
+        || !userSelection
+          ? unitDisplayMessage
+          : userSelection
+      }
     </p>
   </div>
 }
@@ -60,6 +33,7 @@ function mapStateToProps({
     userSelection,
     orderedItem,
     paidAmount,
+    orderIntent,
   } = numericKeypadReducer;
 
   return {
@@ -67,6 +41,7 @@ function mapStateToProps({
     userSelection,
     orderedItem,
     paidAmount,
+    orderIntent,
   }
 }
 

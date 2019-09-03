@@ -8,7 +8,6 @@ function unitDisplayReducer(state = initialState, action) {
   switch(action.type) {
     case unitDisplayActionTypes.updateDisplayMessageAction: {
       const message = action.payload;
-  console.log('updateDisplayMessageAction reducer');
 
       return {
         ...state,
@@ -21,8 +20,6 @@ function unitDisplayReducer(state = initialState, action) {
 }
 
 export function updateDisplayMessageAction(message) {
-  console.log('updateDisplayMessageAction action');
-  
   return {
     type: unitDisplayActionTypes.updateDisplayMessageAction,
     payload: message

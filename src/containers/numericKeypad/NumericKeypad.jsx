@@ -4,13 +4,14 @@ import uuid from 'uuid/v4';
 
 import NumericKey from '../../components/numericKey/NumericKey.jsx';
 import {numericKeysConfig, specialKeysConfig} from './utils/constants.js';
-import {handleUserPurchaseIntent} from './utils/utils';
+import {handleUserPurchaseIntent, handleResetUserSelection} from './utils/utils';
 import {
   registerNumericKeyPressAction,
   registerUserSelectionAction,
   resetUserSelectionAction,
 } from './numericKeypad-reducer';
 import {updateDisplayMessageAction} from '../../components/unitDisplay/unitDisplay-reducer';
+import {unitDisplayMessages} from '../../components/unitDisplay/utils/constants';
 
 function NumericKeypad({
   userSelection,
@@ -19,9 +20,10 @@ function NumericKeypad({
   registerUserSelectionAction,
   updateDisplayMessageAction,
   productList,
+  paidAmount,
 }) {
   const {numericKeyIds} = numericKeysConfig;
-  console.log('userSelection: ', userSelection)
+
   return <div 
     className="numeric-keypad"
   >
@@ -38,8 +40,11 @@ function NumericKeypad({
       )
     })}
     <NumericKey // will dispatch different type of actions than numericKeys
-      keyAction={() => resetUserSelectionAction()}
-
+      keyAction={() => handleResetUserSelection({
+        resetUserSelectionAction,
+        updateDisplayMessageAction,
+        message: unitDisplayMessages.defaultMessage
+      })}
       keyClassName={specialKeysConfig[0].keyName}
       keyValue={specialKeysConfig[0].keyValue}
       key={uuid()}
@@ -50,6 +55,7 @@ function NumericKeypad({
         userSelection,
         registerUserSelectionAction,
         updateDisplayMessageAction,
+        paidAmount,
       })}
       keyClassName={specialKeysConfig[1].keyName}
       keyValue={specialKeysConfig[1].keyValue}
@@ -62,8 +68,11 @@ function mapStateToProps({
   numericKeypadReducer,
   shelfReducer,
 }) {
+  const {paidAmount, userSelection} = numericKeypadReducer;
+
   return {
-    userSelection: numericKeypadReducer.userSelection,
+    userSelection,
+    paidAmount,
     productList: shelfReducer.productList,
   }
 }
